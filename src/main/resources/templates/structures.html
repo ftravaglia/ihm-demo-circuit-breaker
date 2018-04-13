@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>IHM de consultation des structures</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+            
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Formulaire de saisie d'une structure</h1>
+        <form action="#" th:action="@{/structures}" th:object="${structure}" method="post">
+            <p>Code: <input type="text" th:field="*{code}" /></p>
+            <p>Name:  <input type="text" th:field="*{name}" /></p>
+            <p>Description: <input type="text" th:field="*{description}" /></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+        <br /> <br />
+       <table>
+            <tr>
+                <th>Code</th>
+                <th>Nom</th>
+                <th>Description</th>
+            </tr>
+            <tr th:each="str : ${strs}">
+                <td th:text="${str.code}"/>
+                <td th:text="${str.name}"/>
+                <td th:text="${str.description}"/>
+            </tr>
+        </table>
+    </body>
+</html>
